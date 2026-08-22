@@ -1,0 +1,7 @@
+import { CONTACT_EMAIL, HAS_CONTACT_EMAIL, HAS_PHONE_NUMBER, PHONE_NUMBER } from "@/lib/site-config";
+
+export function Contact() {
+  return (
+    <section id="contact" className="section-pad border-t border-line bg-mist"><div className="page-shell rounded-xl border border-line bg-white p-6 shadow-[0_8px_30px_rgb(23_26_29/4%)] sm:p-10"><p className="eyebrow">Contact</p><div className="mt-4 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end"><div><h2 className="text-3xl font-bold tracking-[-.04em]">RefineAuto</h2><p className="mt-3 text-sm text-muted">Nettoyage intérieur automobile à domicile</p><p className="mt-2 text-sm font-semibold">Le Creusot • Montceau-les-Mines • Chalon-sur-Saône & alentours</p>{(HAS_PHONE_NUMBER || HAS_CONTACT_EMAIL) && <div className="mt-5 space-y-1 text-sm text-muted">{HAS_PHONE_NUMBER && <p>Téléphone : {PHONE_NUMBER}</p>}{HAS_CONTACT_EMAIL && <p>Email : {CONTACT_EMAIL}</p>}</div>}</div><div className="flex flex-col gap-3 sm:flex-row">{HAS_PHONE_NUMBER && <><a className="primary-button" href={`tel:${PHONE_NUMBER}`}>Appeler</a><a className="secondary-button" href={`sms:${PHONE_NUMBER}`}>Envoyer un SMS</a></>}{HAS_CONTACT_EMAIL && <a className={HAS_PHONE_NUMBER ? "secondary-button" : "primary-button"} href={`mailto:${CONTACT_EMAIL}`}>Envoyer un email</a>}{!HAS_PHONE_NUMBER && !HAS_CONTACT_EMAIL && <a className="primary-button" href="#reserver">Envoyer une demande</a>}</div></div></div></section>
+  );
+}
