@@ -1,7 +1,6 @@
 import { BookingForm } from "@/components/booking-form";
 import { CareDetails } from "@/components/care-details";
 import { Contact } from "@/components/contact";
-import { FAQ } from "@/components/faq";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { Hero } from "@/components/hero";
@@ -14,7 +13,7 @@ const localBusinessSchema = {
   "@type": "LocalBusiness",
   name: "RefineAuto",
   description: "Nettoyage intérieur automobile à domicile.",
-  areaServed: ["Le Creusot", "Montceau-les-Mines", "Chalon-sur-Saône"],
+  areaServed: ["Le Creusot", "Torcy", "Montchanin", "Montceau-les-Mines", "Saint-Vallier", "Blanzy", "Écuisses", "Saint-Eusèbe", "Chalon-sur-Saône"],
   priceRange: "50 € – 70 €",
 };
 
@@ -25,11 +24,10 @@ export default function Home() {
       <main>
         <Hero />
         <Pricing />
-        <CareDetails />
         <HowItWorks />
+        <CareDetails />
         <ServiceArea />
         <BookingForm />
-        <FAQ />
         <Contact />
       </main>
       <Footer />

@@ -1,9 +1,22 @@
-const cities = ["Le Creusot", "Torcy", "Montchanin", "Montceau-les-Mines", "Saint-Vallier", "Blanzy", "Écuisses", "Saint-Eusèbe", "Communes proches"];
+const nearbyCities = ["Torcy", "Montchanin", "Montceau-les-Mines", "Saint-Vallier", "Blanzy", "Écuisses", "Saint-Eusèbe"];
 
 export function ServiceArea() {
   return (
-    <section id="zone" className="section-pad border-y border-line bg-[#20262a] text-white"><div className="page-shell grid gap-12 lg:grid-cols-[.9fr_1.1fr] lg:items-start"><div><p className="eyebrow !text-[#a9bcc9]">Zone d’intervention</p><h2 className="section-title mt-3">Nous nous déplaçons chez vous.</h2><p className="mt-6 max-w-xl text-sm leading-7 text-white/65">RefineAuto intervient principalement au Creusot, Montceau-les-Mines et dans les communes proches.</p></div>
-      <div><div className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-white/15 bg-white/15 sm:grid-cols-3">{cities.map((city) => <p key={city} className="bg-[#20262a] px-4 py-4 text-sm">{city}</p>)}</div><p className="mt-5 rounded-lg border border-white/20 p-4 text-sm font-bold">Chalon-sur-Saône : +10 € de déplacement</p><p className="mt-5 text-sm leading-6 text-white/65">Vous habitez un peu plus loin ? Envoyez-nous votre demande et nous vous confirmons rapidement si le déplacement est possible.</p></div>
-    </div></section>
+    <section id="zone" className="section-pad bg-[#f7f6f2]">
+      <div className="page-shell grid gap-10 lg:grid-cols-[.62fr_1.38fr] lg:items-start lg:gap-20">
+        <div>
+          <p className="eyebrow">Zone d’intervention</p>
+          <h2 className="section-title mt-4">Nous venons<br />à domicile.</h2>
+        </div>
+        <div className="border-t border-black/12 pt-7 lg:pt-8">
+          <p className="text-[clamp(2.5rem,6vw,5.5rem)] font-bold uppercase leading-none tracking-[-.065em]">Le Creusot</p>
+          <p className="mt-7 max-w-3xl text-lg font-semibold leading-8 tracking-[-.025em] text-[#4e5251] sm:text-xl sm:leading-9">{nearbyCities.map((city, index) => <span key={city}>{index > 0 && <span className="mx-2 text-black/20" aria-hidden="true">·</span>}{city}</span>)}</p>
+          <div className="mt-9 grid gap-4 border-t border-black/12 pt-6 sm:grid-cols-[1fr_auto] sm:items-end">
+            <div><p className="text-sm font-bold">Chalon-sur-Saône</p><p className="mt-1 text-sm text-muted">+10 € de déplacement</p></div>
+            <p className="text-sm text-muted">Vous êtes ailleurs ? <a href="#reserver" className="font-bold text-ink underline decoration-black/25 underline-offset-4 hover:decoration-black">Contactez-nous.</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }

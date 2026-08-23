@@ -2,7 +2,7 @@
 
 Les images ci-dessous sont utilisées uniquement comme photos d’illustration. Elles ne représentent pas des prestations ni des véhicules de clients RefineAuto.
 
-## Habitacle moderne — Hero
+## Habitacle Volkswagen — ancienne illustration non utilisée
 
 - Fichier local : `public/images/habitacle-moderne-hero.jpg`
 - Photographe : Borta
