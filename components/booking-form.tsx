@@ -4,6 +4,8 @@ import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 
 const vehicleTypes = ["Citadine", "Compacte", "Berline", "Break", "SUV", "Monospace", "Utilitaire léger", "Autre"];
+const NETLIFY_FORM_NAME = "refineauto-booking";
+const NETLIFY_FORM_ENDPOINT = "/netlify-form.html";
 
 function RadioCard({ name, value, title, detail, required }: { name: string; value: string; title: string; detail?: string; required?: boolean }) {
   return (
@@ -26,7 +28,9 @@ export function BookingForm() {
     const body = new URLSearchParams();
     formData.forEach((value, key) => body.append(key, String(value)));
     try {
-      const response = await fetch("/", {
+      // Netlify's Next.js runtime only processes forms posted to a static file.
+      // `public/netlify-form.html` is the deploy-time form definition for this form.
+      const response = await fetch(NETLIFY_FORM_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: body.toString(),
@@ -51,8 +55,14 @@ export function BookingForm() {
           </div>
         </div>
 
-        <form name="refineauto-booking" method="POST" action="/merci" data-netlify="true" onSubmit={handleSubmit} className="border-y border-black/12 bg-white py-7 sm:py-9 lg:border-l lg:border-t-0 lg:py-0 lg:pl-12">
-          <input type="hidden" name="form-name" value="refineauto-booking" />
+        <form name={NETLIFY_FORM_NAME} method="POST" action={NETLIFY_FORM_ENDPOINT} onSubmit={handleSubmit} className="border-y border-black/12 bg-white py-7 sm:py-9 lg:border-l lg:border-t-0 lg:py-0 lg:pl-12">
+          <input type="hidden" name="form-name" value={NETLIFY_FORM_NAME} />
+          <p className="absolute left-[-10000px] size-px overflow-hidden whitespace-nowrap border-0 p-0" aria-hidden="true">
+            <label>
+              Ne pas remplir ce champ
+              <input name="bot-field" tabIndex={-1} autoComplete="off" />
+            </label>
+          </p>
           <div className="space-y-7 sm:space-y-8">
             <fieldset><legend className="mb-3 text-sm font-bold"><span className="mr-2 text-xs text-steel">01</span> Formule <span aria-hidden="true">*</span></legend><div className="grid gap-3 sm:grid-cols-2"><RadioCard name="formule" value="Interieur Essentiel - 50 EUR" title="Intérieur Essentiel — 50 €" required /><RadioCard name="formule" value="Interieur Complet - 70 EUR" title="Intérieur Complet — 70 €" required /></div></fieldset>
             <div><label htmlFor="vehicle" className="mb-2 block text-sm font-bold"><span className="mr-2 text-xs text-steel">02</span> Type de véhicule <span aria-hidden="true">*</span></label><select id="vehicle" name="type-vehicule" className="field" required defaultValue=""><option value="" disabled>Sélectionnez un type</option>{vehicleTypes.map((type) => <option key={type}>{type}</option>)}</select></div>
